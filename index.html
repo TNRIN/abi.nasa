@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌌 NASA விண்வெளி தமிழில்</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <h1>📷 இன்று பார்த்த விண்வெளி படம்</h1>
+    <h2 id="title">தலைப்பு பெறப்படுகிறது...</h2>
+    <img id="image" src="" alt="NASA Image">
+    <p id="desc">விளக்கம் வருகிறது...</p>
+  </div>
+
+  <script>
+    fetch("https://api.nasa.gov/planetary/apod?api_key=உன்_API_KEY")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("title").innerText = data.title;
+        document.getElementById("image").src = data.url;
+        document.getElementById("desc").innerText = data.explanation;
+      })
+      .catch(error => {
+        document.getElementById("desc").innerText = "தரவை பெற முடியவில்லை!";
+      });
+  </script>
+</body>
+</html>
